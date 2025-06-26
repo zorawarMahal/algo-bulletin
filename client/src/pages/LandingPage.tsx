@@ -12,7 +12,7 @@ export default function LandingPage() {
   }, []);
 
   const handleLogin = () => {
-    window.location.href = "https://algo-bulletin.onrender.com/auth/google";
+    window.location.href = `${process.env.SERVER_URL}/auth/google`;
   };
 
   return (
