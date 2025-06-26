@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({ origin: "https://algo-bulletin-frontend.onrender.com", credentials: true }));
+app.use(cors({ origin: "${process.env.CLIENT_URL}", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
