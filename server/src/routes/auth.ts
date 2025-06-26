@@ -16,15 +16,11 @@ router.get(
     '/google/callback',
     passport.authenticate('google', { session: false }),
     (req: any, res) => {
-        try {
-            const user = req.user;
+        const user = req.user;
         const token = signToken({ id: user.id, email: user.email });
 
         // Send token to frontend via cookie or redirect
-        res.redirect(`${process.env.CLIENT_URL}/dashboard?token=${token}`);
-        } catch (error) {
-            console.log({error : error.message})
-        }
+        res.redirect(`https://algo-bulletin-frontend.onrender.com/dashboard?token=${token}`);
     }
 );
 
