@@ -20,7 +20,7 @@ router.get(
         const token = signToken({ id: user.id, email: user.email });
 
         // Send token to frontend via cookie or redirect
-        res.redirect(`${process.env.CLIENT_URL}/dashboard?token=${token}`);
+        res.redirect(`https://algo-bulletin-frontend.onrender.com/dashboard?token=${token}`);
     }
 );
 
