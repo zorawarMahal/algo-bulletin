@@ -36,7 +36,7 @@ export default function Dashboard() {
 
     if (storedToken) {
       axios
-        .get("http://localhost:3001/api/me", {
+        .get("https://algo-bulletin.onrender.com/api/me", {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -63,7 +63,7 @@ export default function Dashboard() {
     const token = localStorage.getItem("token");
 
     const res: any = await axios.post(
-      "http://localhost:3001/api/leetcode",
+      "https://algo-bulletin.onrender.com/api/leetcode",
       { username: leetcodeUsername },
       { headers: { Authorization: `Bearer ${token}` } }
     );
