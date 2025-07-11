@@ -13,7 +13,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const clientDistPath = path.join(__dirname, '../../client/dist');
+const clientDistPath = path.resolve(__dirname, '..', '..', 'client', 'dist');
 app.use(express.static(clientDistPath));
 
 app.use(cors({ origin: ["${process.env.CLIENT_URL}", "http://localhost:5173"], credentials: true }));
