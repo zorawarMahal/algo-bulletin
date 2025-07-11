@@ -18,11 +18,11 @@ type LeetCodeStats = {
 export async function fetchLeetCodeStats(username: string, userId: string) {
   const cacheKey = `leetcode:${username}`;
 
-  // 1. Try Redis cache
+  // Try Redis cache
   const cached = await redis.get(cacheKey);
   if (cached) return JSON.parse(cached) as LeetCodeStats;
 
-  // 2. Fetch from external API
+  // Fetch from external API
   const response = await axios.get(`https://leetcode-stats-api.herokuapp.com/${username}`);
   const data = response.data as LeetCodeStats;
 
@@ -30,14 +30,14 @@ export async function fetchLeetCodeStats(username: string, userId: string) {
     throw new Error("Invalid LeetCode username");
   }
 
-  // 3. Cache result
+  // Cache result
   await redis.set(cacheKey, JSON.stringify(data), { EX: 3600 });
 
-  // 4. Save to DB (PostgreSQL via Prisma JSON field)
+  // Save to DB (PostgreSQL via Prisma JSON field)
   await prisma.user.update({
     where: { id: userId },
     data: {
-      leetcode: data, // ✅ now TS knows this is valid JSON
+      leetcode: data, // now TS knows this is valid JSON
     },
   });
 

@@ -11,8 +11,8 @@ export default function LandingPage() {
     }
   }, []);
 
-  const handleLogin = () => {
-    window.location.href = `https://algo-bulletin.onrender.com/auth/google`;
+  const handleGoogleLogin = () => {
+    window.location.href = `http://localhost:3001/auth/google`;
   };
 
   return (
@@ -25,7 +25,7 @@ export default function LandingPage() {
           View all your competitive programming stats from LeetCode, Codeforces, CodeChef, HackerRank, and AtCoder — all in one place.
         </p>
         <Button
-          onClick={handleLogin}
+          onClick={handleGoogleLogin}
           className="text-lg mt-6 bg-white text-black hover:bg-gray-200 px-6 py-5 font-semibold"
         >
           <img

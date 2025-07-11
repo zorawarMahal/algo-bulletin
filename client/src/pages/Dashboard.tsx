@@ -36,7 +36,7 @@ export default function Dashboard() {
 
     if (storedToken) {
       axios
-        .get(`${process.env.SERVER_URL}/api/me`, {
+        .get(`http://localhost:3001/api/me`, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -46,13 +46,13 @@ export default function Dashboard() {
         })
         .catch((err) => {
           console.error("Failed to fetch user", err);
-          localStorage.removeItem("token");
+          localStorage.setItem("token", "");
         });
     }
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.setItem("token", "");
     window.location.href = "/";
   };
 
@@ -63,7 +63,7 @@ export default function Dashboard() {
     const token = localStorage.getItem("token");
 
     const res: any = await axios.post(
-      `${process.env.SERVER_URL}/api/leetcode`,
+      `http://localhost:3001/api/leetcode`,
       { username: leetcodeUsername },
       { headers: { Authorization: `Bearer ${token}` } }
     );
